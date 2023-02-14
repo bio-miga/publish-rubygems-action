@@ -33,12 +33,6 @@ else
   gem update bundler
   bundle install
 
-  echo "Checking git status..."
-  git status
-
-  echo "Checking directory contents..."
-  ls -a
-
   echo "Running gem release task..."
   release_command="${RELEASE_COMMAND:-rake release}"
   exec $release_command
