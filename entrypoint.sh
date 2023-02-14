@@ -22,6 +22,7 @@ then
 else
   echo "new_version=true" >> $GITHUB_OUTPUT
 
+  git config --global --add safe.directory "$GITHUB_WORKSPACE"
   git config --global user.email "${GIT_EMAIL:-automated@example.com}"
   git config --global user.name "${GIT_NAME:-Automated Release}"
 
@@ -34,6 +35,8 @@ else
 
   echo "Checking git status..."
   git status
+
+  echo "Checking directory contents..."
   ls -a
 
   echo "Running gem release task..."
