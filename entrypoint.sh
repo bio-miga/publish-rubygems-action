@@ -22,8 +22,8 @@ then
 else
   echo "new_version=true" >> $GITHUB_OUTPUT
 
-  git config user.email "${GIT_EMAIL:-automated@example.com}"
-  git config user.name "${GIT_NAME:-Automated Release}"
+  git config --global user.email "${GIT_EMAIL:-automated@example.com}"
+  git config --global user.name "${GIT_NAME:-Automated Release}"
 
   work_directory="${WORKDIR:-.}"
   cd $work_directory
@@ -31,6 +31,10 @@ else
   echo "Installing dependencies..."
   gem update bundler
   bundle install
+
+  echo "Checking git status..."
+  git status
+  ls -a
 
   echo "Running gem release task..."
   release_command="${RELEASE_COMMAND:-rake release}"
